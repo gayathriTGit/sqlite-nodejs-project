@@ -21,7 +21,7 @@ phases:
       - snyk monitor
 
        # Run ZAP Baseline scan using the Docker image
-      - docker login -u gayathri.t.gopinathan@gmail.com --password-stdin 29cGUa4UeiM:Wkz
+      - echo 'dckr_pat_mrDB1WSkwdIc8tT_P4N7NDam2tI' | docker login -u gayathritdocker --password-stdin docker.io
       - docker run --rm -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -t http://54.82.0.17:9005/students -r zap_baseline_report.html
 
       # For API scans, you'd typically provide an OpenAPI/Swagger definition
