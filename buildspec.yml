@@ -9,7 +9,7 @@ phases:
       - snyk_cli_dl_linux="https://github.com/snyk/cli/releases/download/${latest_version}/snyk-linux"
       - curl -Lo /usr/local/bin/snyk $snyk_cli_dl_linux
       - chmod +x /usr/local/bin/snyk
-      
+
       # authenticate the Snyk CLI
       - snyk auth 698fb731-8127-4e79-b726-690046985251
       
@@ -19,3 +19,15 @@ phases:
       
       # upload a snapshot of the project to Snyk for continuous monitoring
       - snyk monitor
+
+       # Run ZAP Baseline scan using the Docker image
+      - docker run --rm -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -t http://54.82.0.17:9005/students -r zap_baseline_report.html
+
+      # For API scans, you'd typically provide an OpenAPI/Swagger definition
+      # Example for API scan with OpenAPI:
+      - docker run --rm -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-api-scan.py -t http://54.82.0.17:9005 -f openapi -r zap_api_report.html
+
+artifacts:
+  files:
+    - 'zap_api_report.html'
+    - 'zap_baseline_report.html'
