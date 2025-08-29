@@ -33,7 +33,7 @@ phases:
 
       # For API scans, you'd typically provide an OpenAPI/Swagger definition
       # Example for API scan with OpenAPI:
-      - docker run --rm -u 0:0 -v "$(pwd)/zap_artifacts":/zap/wrk/:rw zaproxy/zapdocker-stable zap-api-scan.py  -t http://23.20.209.45:9005/swagger.json -f openapi -r zap_api_report.html || true
+      - docker run --rm -u 0:0 -v "$(pwd)/zap_artifacts":/zap/wrk/:rw zaproxy/zap-stable zap-api-scan.py  -t http://23.20.209.45:9005/swagger.json -f openapi -r zap_api_report.html || true
 
 artifacts:
   files:
