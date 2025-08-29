@@ -26,11 +26,11 @@ phases:
 
        # Run ZAP Baseline scan using the Docker image
       - echo 'dckr_pat_mrDB1WSkwdIc8tT_P4N7NDam2tI' | docker login -u gayathritdocker --password-stdin docker.io
-      - docker run --rm -u 0:0 -v "$(pwd)/zap_artifacts":/zap/wrk/ zaproxy/zap-stable:latest zap-baseline.py -m 5 -t http://54.242.155.48:9005/students -r zap_baseline_report.html
+      - docker run --rm -u 0:0 -v "$(pwd)/zap_artifacts":/zap/wrk/ zaproxy/zap-stable:latest zap-baseline.py -m 5 -t http://23.20.209.45:9005/students -r zap_baseline_report.html
 
       # For API scans, you'd typically provide an OpenAPI/Swagger definition
       # Example for API scan with OpenAPI:
-      - docker run --rm -u 0:0 -v "$(pwd)/zap_artifacts":/zap/wrk/:rw zaproxy/zap2docker-stable zap-api-scan.py  -t http://54.242.155.48:9005/swagger.json -f openapi -r zap_api_report.html
+      - docker run --rm -u 0:0 -v "$(pwd)/zap_artifacts":/zap/wrk/:rw zaproxy/zap2docker-stable zap-api-scan.py  -t http://23.20.209.45:9005/swagger.json -f openapi -r zap_api_report.html
 
 artifacts:
   files:
