@@ -1,5 +1,5 @@
 # Use a lightweight official Node.js image as the base
-FROM node:20-bookworm-slim
+FROM node:lts-alpine
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
