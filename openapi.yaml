@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Students API
+  version: 1.0.0
+#servers:
+#  - url: {{TARGET_BASE}}
+paths:
+  /students:
+    get:
+      summary: List students
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+/students/{id}:
+    get:
+      summary: Get by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        '404': { description: Not found }
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:        { type: integer, example: 1 }
+        first_name:{ type: string, example: Ada }
+        last_name: { type: string, example: Lovelace }
+        email:     { type: string, format: email, example: ada@math.org }
+        age:       { type: integer, minimum: 0, example: 28 }
+        major:     { type: string, example: CS }
+      required: [id, first_name, last_name, email]
