@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const students = require('./StudentRoutes');
 
@@ -6,6 +7,14 @@ const PORT = process.env.PORT || 9005;
 
 // remove the fingerprint:
 app.disable('x-powered-by');
+
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const spec = YAML.load(path.join(__dirname, 'openapi.yaml'));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(spec));
+// also expose raw JSON if you like:
+app.get('/swagger.json', (_, res) => res.json(spec));
 
 // Middleware to parse JSON requests
 app.use(express.json());
