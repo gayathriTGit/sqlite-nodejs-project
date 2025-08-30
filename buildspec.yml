@@ -4,11 +4,11 @@ version: 0.2
 phases:
   build:
     commands:
-      
+      # create the report directories and make sure container user can write 
       - mkdir -p zap_artifacts
-      - chmod 777 zap_artifacts   # make sure container user can write
+      - chmod 777 zap_artifacts  
       - mkdir -p reports
-      - chmod 777 reports    # make sure container user can write
+      - chmod 777 reports    
       
       # install the latest Snyk CLI from GitHub Releases
       - latest_version=$(curl -Is "https://github.com/snyk/cli/releases/latest" | grep "^location" | sed 's#.*tag/##g' | tr -d "\r")
