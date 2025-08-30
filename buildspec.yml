@@ -7,6 +7,8 @@ phases:
       
       - mkdir -p zap_artifacts
       - chmod 777 zap_artifacts   # make sure container user can write
+      - mkdir -p reports
+      - chmod 777 reports    # make sure container user can write
       
       # install the latest Snyk CLI from GitHub Releases
       - latest_version=$(curl -Is "https://github.com/snyk/cli/releases/latest" | grep "^location" | sed 's#.*tag/##g' | tr -d "\r")
