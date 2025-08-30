@@ -37,5 +37,6 @@ phases:
 
 artifacts:
   files:
-    - 'zap_api_report.html'
-    - 'zap_baseline_report.html'
+    - 'reports/**'
+    - 'zap_artifacts/**'
+  discard-paths: no
